@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+	<string name="app_name">记账本</string>
+	
+    <string name="login_activity">密码锁</string>
+    <string name="main_activity">存单</string>
+    <string name="insert_activity">添加存单</string>
+
+	<string name="bank">银行</string>
+    <string name="money">数目(元)</string>
+	<string name="start">开始日期</string>
+    <string name="space"></string>
+	<string name="end">结束日期</string>
+    <string name="rate">年利率</string>
+	<string name="year">年限</string>
+	
+</resources>

@@ -1,0 +1,15 @@
+# view AndroidManifest.xml #generated:54
+-keep class com.mao.bill.InsertActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:30
+-keep class com.mao.bill.LoginActivity { <init>(...); }
+
+# view AndroidManifest.xml #generated:47
+-keep class com.mao.bill.MainActivity { <init>(...); }
+
+# onClick res/layout/insert.xml #generated:192
+-keepclassmembers class * { *** cancel(...); }
+
+# onClick res/layout/insert.xml #generated:200
+-keepclassmembers class * { *** insert(...); }
+
