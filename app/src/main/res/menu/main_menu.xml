@@ -3,15 +3,17 @@
     <item
 		android:showAsAction="always"
         android:id="@+id/del"
+		android:icon="@drawable/del"
         android:title="编辑"/>
 	
 	<item
 		android:showAsAction="always"
         android:id="@+id/add"
-        android:title="添加"/>
+		android:icon="@drawable/add"
+        android:title="增加"/>
 	
 	<item
-		android:showAsAction="always"
+		android:showAsAction="never"
         android:id="@+id/set"
         android:title="修改密码"/>
     
