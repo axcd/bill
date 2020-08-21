@@ -2,7 +2,17 @@
     
     <item
 		android:showAsAction="always"
-        android:id="@+id/item"
+        android:id="@+id/del"
+        android:title="编辑"/>
+	
+	<item
+		android:showAsAction="always"
+        android:id="@+id/add"
         android:title="添加"/>
+	
+	<item
+		android:showAsAction="always"
+        android:id="@+id/set"
+        android:title="修改密码"/>
     
 </menu>

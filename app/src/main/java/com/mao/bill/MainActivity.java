@@ -18,6 +18,8 @@ public class MainActivity extends Activity
 	private ScrollView scrollView;
 	private LinearLayout view;
 	private List<Bank> banks = new ArrayList<Bank>();
+	private ObjectIO<List<Bank>> oio = new ObjectIO<List<Bank>>();
+	private String fname = "/.bank";
 	
     @Override
     protected void onCreate(Bundle savedInstanceState)
@@ -30,14 +32,16 @@ public class MainActivity extends Activity
 		//滚动条里面View实例化
 		view = (LinearLayout) getLayoutInflater().inflate(R.layout.main, null);
 		
-		//反序列化
-		banks=ObjectIO.inObject();
-  
+		if(null!=oio.inObject(fname)){
+			//反序列化
+			banks=oio.inObject(fname);
+		}
+		
         //增加BanksView
         addBanksView(banks);
 		
 		//序列化
-		ObjectIO.outObject(banks);	
+		oio.outObject(banks,fname);	
 		
 		//把view添加到滚动条
 		scrollView.addView(view);
@@ -46,14 +50,14 @@ public class MainActivity extends Activity
 		setContentView(scrollView);
     }
 	
-	//增加一个银行视图
+	//增加所有银行视图
 	public void addBanksView(List<Bank> banks){
 		for(int i=0;i<banks.size();i++){
 			addBankViewS(banks.get(i),i);
 		}
 	}
 	
-	//增加所有银行列表视图
+	//增加一个银行列表视图
 	public void addBankViewS(Bank bank, int x){
 		addBankView(bank);
 		addAccountsView(bank.getAccounts(), x);
@@ -104,6 +108,7 @@ public class MainActivity extends Activity
 		((TextView)rowView.getChildAt(2)).setText(row.getEnd());
 		((TextView)rowView.getChildAt(3)).setText(row.getRate());
 		((TextView)rowView.getChildAt(4)).setText(row.getYear());
+		((ImageView)rowView.getChildAt(5)).setTag(""+x+y+z);
 		
 		((ImageView)rowView.getChildAt(5)).setOnClickListener(new View.OnClickListener(){
 			public void onClick(View v){
@@ -124,7 +129,7 @@ public class MainActivity extends Activity
 				intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 				startActivity(intent);
 				finish();
-				ObjectIO.outObject(banks);
+				oio.outObject(banks,fname);
 			}
 		});
 	
@@ -144,17 +149,46 @@ public class MainActivity extends Activity
 	@Override
 	public boolean onMenuItemSelected(int featureId, MenuItem item)
 	{
+		Intent intent = new Intent();
 		// TODO: Implement this method
 		switch(item.getItemId())
 		{
 			
-			case R.id.item:
+			case R.id.add:
 				
-	     		Intent intent = new Intent();
 				intent.setClass(MainActivity.this, InsertActivity.class); 
 				intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 				startActivity(intent);
 				finish();
+				
+				return true;
+				
+			case R.id.del:
+				
+				LinearLayout mainLinerLayout = (LinearLayout) findViewById(R.id.mainLinearLayout);
+				for(int x=0;x<this.banks.size();x++){
+					for(int y=0;y<this.banks.get(x).getAccounts().size();y++){
+						for(int z=0;z<this.banks.get(x).getAccounts().get(y).getRows().size();z++){
+							if(mainLinerLayout.findViewWithTag(""+x+y+z).getVisibility()==0){
+								mainLinerLayout.findViewWithTag(""+x+y+z).setVisibility(4);
+								item.setTitle("编辑");
+							}else{
+								mainLinerLayout.findViewWithTag(""+x+y+z).setVisibility(0);
+								item.setTitle("完成");
+							}
+							
+						}
+					}
+				}
+				return true;
+			case R.id.set:
+				
+//				Intent intent = new Intent();
+				intent.setClass(this, SetActivity.class); 
+				intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
+				startActivity(intent);
+				finish();
+				
 				return true;
 		}
 		return super.onMenuItemSelected(featureId, item);

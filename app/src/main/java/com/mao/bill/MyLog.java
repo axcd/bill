@@ -7,7 +7,7 @@ import java.util.Calendar;
 
 public class MyLog
 {
-	private static boolean isAppend = false;
+	private static boolean isAppend = true;
 	private static boolean isLogging = true;
 
 	public static void setIsAppend(boolean isAppend)

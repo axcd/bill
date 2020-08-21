@@ -3,52 +3,52 @@ import java.util.*;
 import java.io.*;
 import android.os.*;
 
-public class ObjectIO
+public class ObjectIO <T>
 {
 	
 
-	private final static File file = new File(Environment.getExternalStorageDirectory(), "Android/data/com.mao.bill/.out");
+	private static File dir = new File(Environment.getExternalStorageDirectory(), "Android/data/com.mao.bill");
 
 	//序列化
-	public static void outObject(List<Bank> banks){
+	public void outObject(T t,String fname){
 
 		try
 		{
 			mkDir();
-			FileOutputStream fos = new FileOutputStream(file);
+			FileOutputStream fos = new FileOutputStream(dir+fname);
 			ObjectOutputStream oos = new ObjectOutputStream(fos);
-			oos.writeObject(banks);
+			oos.writeObject(t);
 			oos.flush();
 			oos.close();
 		}
 		catch (IOException e)
 		{
-			MyLog.d("Out IOException");
+			//MyLog.d("Out IOException");
 		}
 
 	}
 
 	//反序列化
-	public static List<Bank> inObject(){
+	public T inObject(String fname){
 
-		List<Bank> banks = new ArrayList<Bank>();
-
+		T t = null;
+		
 		try
 		{
-			FileInputStream fis = new FileInputStream(file);MyLog.d(banks.toString());
+			FileInputStream fis = new FileInputStream(dir+fname);
 			ObjectInputStream ois = new ObjectInputStream(fis);
-			banks = (List<Bank>) ois.readObject();
+			t = (T) ois.readObject();
 		}
 		catch (ClassNotFoundException e)
 		{
-			MyLog.d("Class Not Found");
+			//MyLog.d("Class Not Found");
 		}
 		catch (IOException e)
 		{
-			MyLog.d(" In IOException");
+			//MyLog.d(" In IOException");
 		}
 
-		return banks;
+		return t;
 	}
 	
 	//创建文件
@@ -56,7 +56,6 @@ public class ObjectIO
 	{
 		try 
 		{
-			File dir = new File(Environment.getExternalStorageDirectory(), "Android/data/com.mao.bill/");
 			if(!dir.exists()){   
 				dir.mkdir();  
 			}

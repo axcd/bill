@@ -29,7 +29,9 @@
 			android:layout_height="wrap_content"
 			android:gravity="center"
 			android:layout_marginLeft="10dp"
-			android:id="@+id/bank"/>
+			android:id="@+id/bank"
+			android:hint="中国银行"
+			android:textColorHint="#FFD1CDFC"/>
 
 	</LinearLayout>
 
@@ -48,13 +50,15 @@
 			android:textSize="15sp"/>
 
 		<EditText
-			android:inputType="text"
+			android:inputType="phone"
 			android:layout_width="wrap_content"
 			android:ems="10"
 			android:layout_height="wrap_content"
 			android:gravity="center"
 			android:layout_marginLeft="10dp"
-			android:id="@+id/account"/>
+			android:id="@+id/account"
+			android:hint="6217 *** 1517"
+			android:textColorHint="#FFD1CDFC"/>
 
 	</LinearLayout>
 
@@ -73,13 +77,15 @@
 			android:textSize="15sp"/>
 
 		<EditText
-			android:inputType="text"
+			android:inputType="number"
 			android:layout_width="wrap_content"
 			android:ems="10"
 			android:layout_height="wrap_content"
 			android:gravity="center"
 			android:layout_marginLeft="10dp"
-			android:id="@+id/money"/>
+			android:id="@+id/money"
+			android:hint="10000"
+			android:textColorHint="#FFD1CDFC"/>
 
 	</LinearLayout>
 
@@ -98,13 +104,15 @@
 			android:textSize="15sp"/>
 
 		<EditText
-			android:inputType="text"
+			android:inputType="datetime"
 			android:layout_width="wrap_content"
 			android:ems="10"
 			android:layout_height="wrap_content"
 			android:gravity="center"
 			android:layout_marginLeft="10dp"
-			android:id="@+id/start"/>
+			android:id="@+id/start"
+			android:hint="2020/08/20"
+			android:textColorHint="#FFD1CDFC"/>
 
 	</LinearLayout>
 
@@ -123,13 +131,15 @@
 			android:textSize="15sp"/>
 
 		<EditText
-			android:inputType="text"
+			android:inputType="datetime"
 			android:layout_width="wrap_content"
 			android:ems="10"
 			android:layout_height="wrap_content"
 			android:gravity="center"
 			android:layout_marginLeft="10dp"
-			android:id="@+id/end"/>
+			android:id="@+id/end"
+			android:hint="2022/08/20"
+			android:textColorHint="#FFD1CDFC"/>
 
 	</LinearLayout>
 
@@ -148,13 +158,15 @@
 			android:textSize="15sp"/>
 
 		<EditText
-			android:inputType="text"
+			android:inputType="numberDecimal|text"
 			android:layout_width="wrap_content"
 			android:ems="10"
 			android:layout_height="wrap_content"
 			android:gravity="center"
 			android:layout_marginLeft="10dp"
-			android:id="@+id/rate"/>
+			android:id="@+id/rate"
+			android:hint="2.1"
+			android:textColorHint="#FFD1CDFC"/>
 
 	</LinearLayout>
 
@@ -173,13 +185,15 @@
 			android:textSize="15sp"/>
 
 		<EditText
-			android:inputType="text"
+			android:inputType="numberDecimal|text"
 			android:layout_width="wrap_content"
 			android:ems="10"
 			android:layout_height="wrap_content"
 			android:gravity="center"
 			android:layout_marginLeft="10dp"
-			android:id="@+id/year"/>
+			android:id="@+id/year"
+			android:hint="2"
+			android:textColorHint="#FFD1CDFC"/>
 
 	</LinearLayout>
 
@@ -195,7 +209,9 @@
 			android:text="取消"
 			android:id="@+id/cancel"
 			android:onClick="cancel"
-			android:layout_weight="1.0"/>
+			android:layout_weight="1.0"
+			android:background="#FFF2AAE1"
+			android:layout_margin="5dp"/>
 
 		<Button
 			android:layout_height="wrap_content"
@@ -203,7 +219,10 @@
 			android:text="添加"
 			android:id="@+id/insert"
 			android:onClick="insert"
-			android:layout_weight="1.0"/>
+			android:layout_weight="1.0"
+			android:hint="test"
+			android:background="#FFF2AAE1"
+			android:layout_margin="5dp"/>
 
 	</LinearLayout>
 

@@ -18,6 +18,8 @@ public class InsertActivity extends Activity
 	private EditText year;
 	private Button insert;
 	private List<Bank> banks;
+	private ObjectIO<List<Bank>> oio = new ObjectIO<List<Bank>>();
+	private String fname = "/.bank";
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -126,11 +128,11 @@ public class InsertActivity extends Activity
 								   year.getText().toString());
 
 			//反序列化
-			this.banks=ObjectIO.inObject();
+			this.banks=oio.inObject(fname);
 			//增加列表
 			add(addbank);
 			//序列化
-			ObjectIO.outObject(banks);	
+			oio.outObject(banks,fname);	
 
 			Intent intent = new Intent();
 			intent.setClass(this, MainActivity.class); 
@@ -157,22 +159,32 @@ public class InsertActivity extends Activity
     }
 */
 	//点两次退出
-	private long exitTime = 0;
+	private boolean isExit;
 
+	/**
+	 * 双击返回键退出
+	 */
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
-            if ((System.currentTimeMillis() - exitTime) > 2000) {
-                Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
-                exitTime = System.currentTimeMillis();
-            } else {
-                finish();
-				System.exit(0);
-            }
-            return true;
-        }
 
-        return super.onKeyDown(keyCode, event);
-    }
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			if (isExit) {
+				this.finish();
 
+			} else {
+				Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
+				isExit = true;
+				new Handler().postDelayed(new Runnable() {
+						@Override
+						public void run() {
+							isExit= false;
+						}
+					}, 2000);
+			}
+			return true;
+		}
+
+		return super.onKeyDown(keyCode, event);
+	}
+	
 }

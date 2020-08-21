@@ -7,7 +7,7 @@
 	android:stretchMode="columnWidth"
 	android:layout_marginLeft="10dp"
 	android:layout_marginRight="10dp"
-	android:background="#FFF7DEF7"
+	android:background="#FFFBFCD9"
 	android:layout_height="30dp"
 	android:padding="5dp"
 	android:gravity="center">
@@ -50,8 +50,9 @@
 	<ImageView
 		android:layout_height="25dp"
 		android:layout_width="wrap_content"
-		android:src="@android:drawable/ic_delete"/>
-	
+		android:src="@android:drawable/ic_delete"
+		android:visibility="invisible"/>
+
 	<TextView
 		android:layout_height="wrap_content"
 		android:layout_width="wrap_content"

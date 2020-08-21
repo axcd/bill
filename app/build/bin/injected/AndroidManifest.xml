@@ -58,6 +58,13 @@
 
 		</activity>
 
+		<activity
+			android:name=".SetActivity"
+			android:label="@string/set_activity"
+			android:theme="@style/AppTheme">
+
+		</activity>
+
 	</application>
 
 </manifest>

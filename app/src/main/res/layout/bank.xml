@@ -4,7 +4,7 @@
 	android:layout_height="wrap_content"
 	android:layout_width="match_parent"
 	android:orientation="horizontal"
-	android:paddingTop="10dp">
+	android:gravity="center">
 
 	<TextView
 		android:layout_width="wrap_content"
@@ -12,12 +12,11 @@
 		android:textAppearance="?android:attr/textAppearanceMedium"
 		android:text="中国银行"
 		android:textSize="20sp"
-		android:padding="5dp"
-		android:layout_marginLeft="5dp"
-		android:layout_marginTop="15dp"
-		android:background="#FF17E80A"
+		android:layout_marginTop="10dp"
+		android:background="#FFFADA5A"
 		android:gravity="center"
-		android:textColor="#FFF61440"/>
+		android:textColor="#FFF30743"
+		android:padding="6dp"/>
 
 </LinearLayout>
 
