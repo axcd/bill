@@ -24,7 +24,6 @@ public class LoginActivity extends Activity
 		final EditText et = (EditText)findViewById(R.id.loginEditText1);
 		final StringBuffer secret = new StringBuffer("");
 
-		//oio.outObject(new Usr("a","123456"),fname);
 		//反序列化
 		usr = oio.inObject(fname);
 
@@ -70,27 +69,29 @@ public class LoginActivity extends Activity
     }
 
 	//点两次退出
-	private long exitTime = 0;
+	private boolean isExit;
 
 	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event)
-	{
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN)
-		{
-            if ((System.currentTimeMillis() - exitTime) > 2000)
-			{
-                Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
-                exitTime = System.currentTimeMillis();
-            }
-			else
-			{
-                finish();
-				System.exit(0);
-            }
-            return true;
-        }
+	public boolean onKeyDown(int keyCode, KeyEvent event) {
 
-        return super.onKeyDown(keyCode, event);
-    }
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
+			if (isExit) {
+				this.finish();
+
+			} else {
+				Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
+				isExit = true;
+				new Handler().postDelayed(new Runnable() {
+						@Override
+						public void run() {
+							isExit= false;
+						}
+					}, 2000);
+			}
+			return true;
+		}
+
+		return super.onKeyDown(keyCode, event);
+	}
 
 }

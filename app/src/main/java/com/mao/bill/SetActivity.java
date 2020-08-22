@@ -26,40 +26,10 @@ public class SetActivity extends Activity
 			cancel.setVisibility(8);
 		}
 	}
-	
-	//点两次退出
-	private long exitTime = 0;
 
-	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event)
-	{
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN)
-		{
-            if ((System.currentTimeMillis() - exitTime) > 2000)
-			{
-                Toast.makeText(this, "再按一次退出程序", Toast.LENGTH_SHORT).show();
-                exitTime = System.currentTimeMillis();
-            }
-			else
-			{
-                finish();
-				System.exit(0);
-            }
-            return true;
-        }
-
-        return super.onKeyDown(keyCode, event);
-    }
-	
 	//取消事件
 	public void cancel(View view){
-		if(null!=usr){
-			Intent intent = new Intent();
-			intent.setClass(this, MainActivity.class); 
-			intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-			startActivity(intent);
-			finish();
-		}
+		finish();
 	}
 	
 	//修改密码
@@ -92,7 +62,7 @@ public class SetActivity extends Activity
 				intent.setClass(this, MainActivity.class); 
 				intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 				startActivity(intent);
-				finish();
+				
 			}
 		}else{
 			usr = new Usr("", "123456");

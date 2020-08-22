@@ -4,7 +4,7 @@
 	android:layout_width="fill_parent"
 	android:layout_height="fill_parent"
 	android:orientation="vertical"
-	android:background="#FFC9F6F6"
+	android:background="#FFF9F9F2"
 	android:padding="30dp"
 	android:gravity="top|center">
 
@@ -31,7 +31,8 @@
 			android:gravity="center"
 			android:layout_marginLeft="10dp"
 			android:id="@+id/old"
-			android:hint=""
+			android:maxLength="8"
+			android:hint="最长8个数字"
 			android:textColorHint="#FFD1CDFC"/>
 
 	</LinearLayout>
@@ -57,8 +58,9 @@
 			android:layout_height="wrap_content"
 			android:gravity="center"
 			android:layout_marginLeft="10dp"
+			android:maxLength="8"
 			android:id="@+id/new1"
-			android:hint=""
+			android:hint="最长8个数字"
 			android:textColorHint="#FFD1CDFC"/>
 
 	</LinearLayout>
@@ -85,13 +87,14 @@
 			android:gravity="center"
 			android:layout_marginLeft="10dp"
 			android:id="@+id/new2"
-			android:hint=""
+			android:maxLength="8"
+			android:hint="最长8个数字"
 			android:textColorHint="#FFD1CDFC"/>
 
 	</LinearLayout>
 
 	<LinearLayout
-		android:layout_height="wrap_content"
+		android:layout_height="50dp"
 		android:layout_width="match_parent"
 		android:orientation="horizontal"
 		android:layout_marginTop="30dp">
@@ -103,7 +106,7 @@
 			android:id="@+id/cancel"
 			android:onClick="cancel"
 			android:layout_weight="1.0"
-			android:background="#FFF2AAE1"
+			android:background="#FFD4E0E0"
 			android:layout_margin="5dp"/>
 
 		<Button
@@ -113,8 +116,7 @@
 			android:id="@+id/set"
 			android:onClick="set"
 			android:layout_weight="1.0"
-			android:hint="test"
-			android:background="#FFF2AAE1"
+			android:background="#FFD4E0E0"
 			android:layout_margin="5dp"/>
 
 	</LinearLayout>

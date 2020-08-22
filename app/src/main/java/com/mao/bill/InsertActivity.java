@@ -138,53 +138,13 @@ public class InsertActivity extends Activity
 			intent.setClass(this, MainActivity.class); 
 			intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 			startActivity(intent);
-			finish();
+			//finish();
 		}
 	}
 	
 	//取消事件
 	public void cancel(View view){
-		Intent intent = new Intent();
-		intent.setClass(this, MainActivity.class); 
-		intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
-		startActivity(intent);
 		finish();
 	}
-/*
-    @Override
-    public boolean onKeyDown(int keyCode,KeyEvent event){
-        if(keyCode==KeyEvent.KEYCODE_BACK) 
-        return true;//不执行父类点击事件
-        return super.onKeyDown(keyCode, event);//继续执行父类其他点击事件
-    }
-*/
-	//点两次退出
-	private boolean isExit;
 
-	/**
-	 * 双击返回键退出
-	 */
-	@Override
-	public boolean onKeyDown(int keyCode, KeyEvent event) {
-
-		if (keyCode == KeyEvent.KEYCODE_BACK) {
-			if (isExit) {
-				this.finish();
-
-			} else {
-				Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
-				isExit = true;
-				new Handler().postDelayed(new Runnable() {
-						@Override
-						public void run() {
-							isExit= false;
-						}
-					}, 2000);
-			}
-			return true;
-		}
-
-		return super.onKeyDown(keyCode, event);
-	}
-	
 }

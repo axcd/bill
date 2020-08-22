@@ -14,7 +14,7 @@ import android.content.*;
 
 public class MainActivity extends Activity 
 {
-	
+	private int visible = 4;
 	private ScrollView scrollView;
 	private LinearLayout view;
 	private List<Bank> banks = new ArrayList<Bank>();
@@ -26,28 +26,7 @@ public class MainActivity extends Activity
     {
         super.onCreate(savedInstanceState);
 		
-		//滚动条实例化
-		scrollView = (ScrollView) getLayoutInflater().inflate(R.layout.scrollview, null);
-		
-		//滚动条里面View实例化
-		view = (LinearLayout) getLayoutInflater().inflate(R.layout.main, null);
-		
-		if(null!=oio.inObject(fname)){
-			//反序列化
-			banks=oio.inObject(fname);
-		}
-		
-        //增加BanksView
-        addBanksView(banks);
-		
-		//序列化
-		oio.outObject(banks,fname);	
-		
-		//把view添加到滚动条
-		scrollView.addView(view);
-		
-		//显示视图
-		setContentView(scrollView);
+		display();
     }
 	
 	//增加所有银行视图
@@ -109,6 +88,7 @@ public class MainActivity extends Activity
 		((TextView)rowView.getChildAt(3)).setText(row.getRate());
 		((TextView)rowView.getChildAt(4)).setText(row.getYear());
 		((ImageView)rowView.getChildAt(5)).setTag(""+x+y+z);
+		((ImageView)rowView.getChildAt(5)).setVisibility(visible);
 		
 		((ImageView)rowView.getChildAt(5)).setOnClickListener(new View.OnClickListener(){
 			public void onClick(View v){
@@ -123,12 +103,13 @@ public class MainActivity extends Activity
 					accounts.remove(y);
 				if(accounts.size()==0)
 					MainActivity.this.banks.remove(x);
+					
 	
 				Intent intent = new Intent();
 				intent.setClass(MainActivity.this, MainActivity.class); 
 				intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 				startActivity(intent);
-				finish();
+	
 				oio.outObject(banks,fname);
 			}
 		});
@@ -159,7 +140,6 @@ public class MainActivity extends Activity
 				intent.setClass(MainActivity.this, InsertActivity.class); 
 				intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 				startActivity(intent);
-				finish();
 				
 				return true;
 				
@@ -170,49 +150,39 @@ public class MainActivity extends Activity
 					for(int y=0;y<this.banks.get(x).getAccounts().size();y++){
 						for(int z=0;z<this.banks.get(x).getAccounts().get(y).getRows().size();z++){
 							if(mainLinerLayout.findViewWithTag(""+x+y+z).getVisibility()==0){
-								mainLinerLayout.findViewWithTag(""+x+y+z).setVisibility(4);
 								item.setTitle("编辑");
+								visible = 4;
 							}else{
-								mainLinerLayout.findViewWithTag(""+x+y+z).setVisibility(0);
 								item.setTitle("完成");
+								visible = 0;
 							}
-							
+							mainLinerLayout.findViewWithTag(""+x+y+z).setVisibility(visible);
 						}
 					}
 				}
 				return true;
-			case R.id.set:
 				
-//				Intent intent = new Intent();
+			case R.id.set:
+
 				intent.setClass(this, SetActivity.class); 
 				intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
 				startActivity(intent);
-				finish();
 				
 				return true;
 		}
 		return super.onMenuItemSelected(featureId, item);
 	}
-/*
-    @Override
-    public boolean onKeyDown(int keyCode,KeyEvent event){
-        if(keyCode==KeyEvent.KEYCODE_BACK) 
-			return true;//不执行父类点击事件
-        return super.onKeyDown(keyCode, event);//继续执行父类其他点击事件
-    }
-*/	
-	private boolean isExit;
 
-	/**
-	 * 双击返回键退出
-	 */
+    //点两次退出
+	private boolean isExit;
+	
+	//双击返回键退出
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
 
 		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			if (isExit) {
 				this.finish();
-
 			} else {
 				Toast.makeText(this, "再按一次退出", Toast.LENGTH_SHORT).show();
 				isExit = true;
@@ -228,5 +198,40 @@ public class MainActivity extends Activity
 
 		return super.onKeyDown(keyCode, event);
 	}
+
+	@Override
+	protected void onNewIntent(Intent intent)
+	{
+		// TODO: Implement this method
+		super.onNewIntent(intent);
+		display();
+	}
+	
+	public void display(){
+		
+		//滚动条实例化
+		scrollView = (ScrollView) getLayoutInflater().inflate(R.layout.scrollview, null);
+
+		//滚动条里面View实例化
+		view = (LinearLayout) getLayoutInflater().inflate(R.layout.main, null);
+
+		if(null!=oio.inObject(fname)){
+			//反序列化
+			banks=oio.inObject(fname);
+		}
+
+        //增加BanksView
+        addBanksView(banks);
+
+		//序列化
+		oio.outObject(banks,fname);	
+
+		//把view添加到滚动条
+		scrollView.addView(view);
+
+		//显示视图
+		setContentView(scrollView);
+	}
+
 	
 }

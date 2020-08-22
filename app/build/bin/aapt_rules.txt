@@ -1,4 +1,4 @@
-# view AndroidManifest.xml #generated:54
+# view AndroidManifest.xml #generated:55
 -keep class com.mao.bill.InsertActivity { <init>(...); }
 
 # view AndroidManifest.xml #generated:30
@@ -7,16 +7,16 @@
 # view AndroidManifest.xml #generated:47
 -keep class com.mao.bill.MainActivity { <init>(...); }
 
-# view AndroidManifest.xml #generated:61
+# view AndroidManifest.xml #generated:62
 -keep class com.mao.bill.SetActivity { <init>(...); }
 
-# onClick res/layout/insert.xml #generated:206
-# onClick res/layout/set.xml #generated:99
+# onClick res/layout/insert.xml #generated:213
+# onClick res/layout/set.xml #generated:102
 -keepclassmembers class * { *** cancel(...); }
 
-# onClick res/layout/insert.xml #generated:216
+# onClick res/layout/insert.xml #generated:223
 -keepclassmembers class * { *** insert(...); }
 
-# onClick res/layout/set.xml #generated:109
+# onClick res/layout/set.xml #generated:112
 -keepclassmembers class * { *** set(...); }
 
