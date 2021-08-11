@@ -7,7 +7,7 @@ public class ObjectIO <T>
 {
 	
 
-	private static File dir = new File(Environment.getExternalStorageDirectory(), "Android/data/com.mao.bill");
+	private static File dir = Environment.getExternalStoragePublicDirectory("bill");
 
 	//序列化
 	public void outObject(T t,String fname){

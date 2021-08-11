@@ -84,6 +84,12 @@ public class Row implements Serializable,Comparable
 		if(!this.moneys.equals(row.moneys)){
 			return this.moneys.compareTo(row.moneys);
 		}
+		if(!this.rate.equals(row.rate)){
+			return this.rate.compareTo(row.rate);
+		}
+		if(!this.year.equals(row.year)){
+			return this.year.compareTo(row.year);
+		}
 		return 0;
 	}
 

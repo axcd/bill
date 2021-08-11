@@ -87,7 +87,7 @@
 			android:layout_marginLeft="10dp"
 			android:id="@+id/money"
 			android:hint="10000"
-			android:maxLength="7"
+			android:maxLength="8"
 			android:textColorHint="#FFD1CDFC"/>
 
 	</LinearLayout>
